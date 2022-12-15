@@ -1,0 +1,5 @@
+{
+  "all": true,
+  "include": "dist/**",
+  "exclude": "dist/app.js"
+}

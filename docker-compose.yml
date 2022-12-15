@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0.27
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - '3306:3306'
+    volumes: 
+      - ./data:/data/db
+  app:
+    build:
+      context: .
+      target: user
+    image: king-of-dev-backend
+    user: $USER_ID
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    command:
+      - tail
+      - -f
+    volumes:
+      - .:/app
+volumes:
+  npm-cache:
