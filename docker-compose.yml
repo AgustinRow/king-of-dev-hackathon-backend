@@ -3,6 +3,7 @@ services:
   db:
     image: mysql:8.0.27
     container_name: mysql_db
+    restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: 1234
     ports:
@@ -19,10 +20,17 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=development
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_NAME=yourdatabase
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_DIALECT=mysql
     command:
       - tail
       - -f
     volumes:
       - .:/app
 volumes:
+  db: {}
   npm-cache:
