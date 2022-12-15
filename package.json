@@ -1,7 +1,7 @@
 {
-  "name": "monterrey-institute-backend",
+  "name": "think-and-dev-hackathon-backend",
   "version": "1.0.0",
-  "description": "Monterrey Institute of Technology and Higher Education Prototipe",
+  "description": "Hackathon think and dev",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint --ext .js .",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neocomplexx/monterrey-institute-backend.git"
+    "url": "git+https://github.com/AgustinRow/king-of-dev-hackathon-backend"
   },
   "engines": {
     "node": "14.17.4"
