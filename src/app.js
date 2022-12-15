@@ -1,3 +1,3 @@
-import { start } from './server/server';
+import { start } from './deliveries/express/server';
 /** START SERVER **/
 start();
