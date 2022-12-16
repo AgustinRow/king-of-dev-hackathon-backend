@@ -1,3 +1,5 @@
+import walletAddressSchema from './walletAddress.validator';
+
 export default {
-  /* here exports joi validators */
+  walletAddressSchema,
 };
