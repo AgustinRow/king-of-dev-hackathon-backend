@@ -1,10 +1,17 @@
 import { Router } from 'express';
-import { getTravelControllerInstance } from '../../../controllers/travel';
 import handlerController from '../middlewares/handlerController';
-//import Validator from '../middlewares/Validator';
+import {
+  beginTravelControllerInstance,
+  endTravelControllerInstance,
+  getTravelsControllerInstance,
+} from '../../../controllers/travel/index';
 
 const router = Router();
 
-router.get('/', handlerController(getTravelControllerInstance));
+router.get('/', handlerController(getTravelsControllerInstance));
 
-export default router;
+router.post('/beginTravel', handlerController(beginTravelControllerInstance));
+
+router.post('/endTravel', handlerController(endTravelControllerInstance));
+
+export { router };
