@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { port } from 'config';
 import models from '../../models/db';
+import healthCheckRouter from './routes/healthckeck';
+
 const sequelize = models.sequelize;
 const app = express();
 
@@ -11,6 +13,8 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+app.use('/healthcheck', healthCheckRouter);
 
 export const start = async () => {
   await sequelize
