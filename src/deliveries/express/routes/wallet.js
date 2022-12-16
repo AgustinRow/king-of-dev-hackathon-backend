@@ -11,4 +11,4 @@ router.post(
   handlerController(signInUserControllerInstance),
 );
 
-export default router;
+export { router };
