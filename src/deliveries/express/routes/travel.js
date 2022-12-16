@@ -1,18 +1,17 @@
 import { Router } from 'express';
 import handlerController from '../middlewares/handlerController';
-// import Validator from '../middlewares/Validator';
-import { beginTravelControllerInstance, endTravelControllerInstance } from '../../../controllers/travel/index';
+import {
+  beginTravelControllerInstance,
+  endTravelControllerInstance,
+  getTravelsControllerInstance,
+} from '../../../controllers/travel/index';
 
 const router = Router();
 
-router.post(
-  '/beginTravel',
-  handlerController(beginTravelControllerInstance),
-);
+router.get('/', handlerController(getTravelsControllerInstance));
 
-router.post(
-    '/endTravel',
-    handlerController(endTravelControllerInstance),
-  );
+router.post('/beginTravel', handlerController(beginTravelControllerInstance));
 
-  export { router };
+router.post('/endTravel', handlerController(endTravelControllerInstance));
+
+export { router };
