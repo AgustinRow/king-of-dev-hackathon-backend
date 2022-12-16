@@ -1,18 +1,24 @@
-import { Model } from 'sequelize';
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-module.exports = (sequelize, DataTypes) => {
-  class Wallet extends Model {
+const addressRegex = /^0x[a-fA-F0-9]{40}$/;
 
-    Wallet.init('wallet')
+const validateAddress = (address) => addressRegex.test(address);
 
-  }
+const walletAddress = new Schema({
+  address: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: validateAddress,
+      message: 'provided address is invalid',
+    },
+    match: [addressRegex, 'provided address is invalid'],
+  },
+});
 
-
-
-  sequelize.define('wallet', {
-    wallet: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }    
-  })
-};
+export const WalletAddressModel = mongoose.model(
+  'WalletAddress',
+  walletAddress,
+);
