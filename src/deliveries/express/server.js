@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import walletRouter from './routes/wallet';
 import healthCheckRouter from './routes/healthckeck';
+import travelController from './routes/travel';
 import { logger } from '../../logger/generalJsonLogger';
 
 const mongoose = require('mongoose');
@@ -17,6 +18,7 @@ app.use(morgan('dev'));
 
 app.use('/api/wallet', walletRouter);
 app.use('/api/healthcheck', healthCheckRouter);
+app.use('/api/travel', travelController);
 
 const build = () => app;
 
