@@ -2,11 +2,12 @@ import express from 'express';
 import { json, urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-import { port } from 'config';
-import models from '../../models/db';
+import walletRouter from './routes/wallet';
 import healthCheckRouter from './routes/healthckeck';
+import { logger } from '../../logger/generalJsonLogger';
 
-const sequelize = models.sequelize;
+const mongoose = require('mongoose');
+
 const app = express();
 
 app.use(cors());
@@ -14,18 +15,22 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-app.use('/healthcheck', healthCheckRouter);
+app.use('/api/wallet', walletRouter);
+app.use('/api/healthcheck', healthCheckRouter);
 
-export const start = async () => {
-  await sequelize
-    .authenticate()
-    .then(() => {
-      console.log('CONEXIÓN A LA BASE DE DATOS OK');
-    })
-    .catch((error) => {
-      console.log('error: ', error);
+const build = () => app;
+
+async function startServices({ db }) {
+  try {
+    await db.connect();
+    if (mongoose.STATES[mongoose.connection.readyState] == 'connected') {
+      logger.info('Database connected');
+    }
+  } catch (error) {
+    logger.error('Could not connect to database', {
+      errors: JSON.stringify(error),
     });
-  app.listen(port, () => {
-    console.log(`REST API on http://localhost:${port}`);
-  });
-};
+  }
+}
+
+export { build, startServices };
