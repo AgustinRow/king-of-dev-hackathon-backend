@@ -45,7 +45,7 @@ Object.keys(models).forEach((modelName) => {
     models[modelName].associate(models);
   }
 });
-//sequelize.sync({ alter: true });
+sequelize.sync({ alter: true });
 models.sequelize = sequelize;
 //db.Sequelize = Sequelize;
 
