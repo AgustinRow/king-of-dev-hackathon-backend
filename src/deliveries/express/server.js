@@ -2,10 +2,8 @@ import express from 'express';
 import { json, urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-import walletRouter from './routes/wallet';
-import healthCheckRouter from './routes/healthckeck';
 import { logger } from '../../logger/generalJsonLogger';
-
+import { router as routes } from '../../deliveries/express/routes/index.js'
 const mongoose = require('mongoose');
 
 const app = express();
@@ -15,8 +13,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-app.use('/api/wallet', walletRouter);
-app.use('/api/healthcheck', healthCheckRouter);
+app.use('/api', routes);
 
 const build = () => app;
 
