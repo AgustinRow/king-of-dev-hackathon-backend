@@ -6,11 +6,14 @@ import { port } from 'config';
 import models from '../../models/db';
 const sequelize = models.sequelize;
 const app = express();
+import {router as routes } from '../../routes/index.js'
 
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+app.use('/api', routes);
 
 export const start = async () => {
   await sequelize
