@@ -7,8 +7,9 @@ const getTravelsController =
     if (travels != null) return { status: 200, response: { travels } };
     return {
       status: 400,
-      resposne: { message: 'There is no available travels' },
+      resposne: { message: 'There is no available travelss' },
     };
+
   };
 
 export default getTravelsController;
