@@ -1,19 +1,19 @@
 {
-  "name": "monterrey-institute-backend",
+  "name": "think-and-dev-hackathon-backend",
   "version": "1.0.0",
-  "description": "Monterrey Institute of Technology and Higher Education Prototipe",
+  "description": "Hackathon think and dev",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint --ext .js .",
     "eslint-fix": "eslint --ext .js . --fix",
     "build": "babel src --out-dir dist",
-    "restart": "rimraf dist && npm run build && npm run start",
+    "restart": "rimraf dist && npm run build && node dist/app.js",
     "dev": "nodemon --exec npm run start",
     "start": "babel-node src/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neocomplexx/monterrey-institute-backend.git"
+    "url": "git+https://github.com/AgustinRow/king-of-dev-hackathon-backend"
   },
   "engines": {
     "node": "14.17.4"
@@ -52,11 +52,16 @@
   },
   "dependencies": {
     "body-parser": "^1.19.1",
+    "config": "^3.3.7",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "joi": "^17.7.0",
+    "mongoose": "^6.8.0",
     "morgan": "^1.10.0",
-    "config": "^3.3.7"
-
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.27.0",
+    "winston": "^3.8.2"
   }
 }
